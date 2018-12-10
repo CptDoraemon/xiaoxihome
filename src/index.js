@@ -4,29 +4,29 @@ import './index.css';
 import MouseIcon from './mouseIcon';
 import * as serviceWorker from './serviceWorker';
 
+import academicProjects from './academicProject';
 
 
 
 
 
 
+function NavItem(props) {
+    return (
+        <li onClick={() => props.onClick(props.clickTo)}> {props.value} </li>
+    )
+}
 
 
 class Header extends React.Component {
     render() {
-        let listItems = [...this.props.list];
-        listItems = listItems.map((i) => {
-            return (
-                <li
-                    key={i}
-                    onClick={() => this.props.onClick(i)}
-                >{i}</li>
-            )
-        });
         return (
             <div className={this.props.className}>
                 <ul>
-                    {listItems}
+                    <NavItem clickTo={'home'} value={'home'} onClick={this.props.onClick}/>
+                    <NavItem clickTo={'work'} value={'work'} onClick={this.props.onClick}/>
+                    <NavItem clickTo={'about'} value={'about'} onClick={this.props.onClick}/>
+                    <NavItem clickTo={'contact'} value={'contact'} onClick={this.props.onClick}/>
                 </ul>
             </div>
         )
@@ -104,16 +104,13 @@ class ProjectList extends React.Component {
 
 class Footer extends React.Component {
     render() {
-        let listItems = [...this.props.list];
-        listItems = listItems.map((i) => {
-            return (
-                <li key={i}>{i}</li>
-            )
-        });
         return (
             <div className={this.props.className}>
                 <ul>
-                    {listItems}
+                    <NavItem clickTo={'home'} value={'home'} onClick={this.props.onClick}/>
+                    <NavItem clickTo={'work'} value={'work'} onClick={this.props.onClick}/>
+                    <NavItem clickTo={'about'} value={'about'} onClick={this.props.onClick}/>
+                    <NavItem clickTo={'contact'} value={'contact'} onClick={this.props.onClick}/>
                 </ul>
                 <div className='copyright'>
                     <p>&copy; Xiaoxi 2018</p>
@@ -123,12 +120,39 @@ class Footer extends React.Component {
     }
 }
 
+function AcademicProjectTemplate(props) {
+    const boxes = props.projectArray.map((i, index) => {
+        return (
+            <AcademicProjectBox index={index} description={i.description} link={i.link}/>
+        )
+    })
+    let title = props.title;
+    title = (title).match(/[A-Za-z]+/ig);
+    title = title.join(' ');
+    return (
+        <div className='academic-project-template-wrapper'>
+            <h1> {title} </h1>
+            { boxes }
+        </div>
+    )
+}
+
+function AcademicProjectBox(props) {
+    return (
+        <a href={props.link} target="_blank" rel='noopener noreferrer'>
+            <div className='AcademicProjectBox'>
+                <h2>project {props.index + 1}</h2>
+                <div dangerouslySetInnerHTML={{__html: props.description }}></div>
+            </div>
+        </a>
+        )
+}
+
 class Index extends React.Component {
     render() {
         return (
             <div>
                 <Header
-                    list={['home', 'work', 'about', 'contact']}
                     className='header-cover'
                     onClick={this.props.onClick}
                 />
@@ -140,7 +164,7 @@ class Index extends React.Component {
                             'Machine Learning',
                             'Empirical International Trade',
                             'North American Economic History',
-                            'Stochastic Process',
+                            'Stochastic Processes',
                             'Applied Macroeconomics',
                             'Econometric Theory'
                         ]}
@@ -166,7 +190,7 @@ class Index extends React.Component {
                         title={"Photography"} />
                 </div>
                 <Footer
-                    list={['home', 'work', 'about', 'contact']}
+                    onClick={this.props.onClick}
                     className='footer' />
             </div>
         )
@@ -174,24 +198,54 @@ class Index extends React.Component {
 }
 
 class ProjectPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.project = this.props.project;
+        this.projectArray = this.props.projectArray;
+        this.state = {
+            headerPosition: 'relative',
+            headerTop: 0,
+            placeholderClassName: 'header-fixed-placeholder',
+        };
+        this.handleScroll = this.handleScroll.bind(this);
+    };
+    componentDidMount(){
+        window.addEventListener('scroll', this.handleScroll);
+    };
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.handleScroll);
+    };
+    handleScroll() {
+        const scrolled = window.pageYOffset;
+        if (scrolled >= 50 && this.state.headerPosition !== 'fixed') {
+            this.setState({
+                headerPosition: 'fixed',
+                headerTop: '-50px',
+                placeholderClassName: 'header-fixed-placeholder-scrolled'
+            })
+        }
+        if (scrolled < 50 && this.state.headerPosition === 'fixed') {
+            this.setState({
+                headerPosition: 'relative',
+                headerTop: 0,
+                placeholderClassName: 'header-fixed-placeholder'
+            })
+        }
+
+    }
     render() {
         return (
             <div>
-                <Header
-                    list={['home', 'work', 'about', 'contact']}
-                    className='header-cover'
-                    onClick={this.props.onClick}
-                />
+                <div className='header-fixed' style={{position: this.state.headerPosition, top: this.state.headerTop}}>
+                    <h1>Academic Project</h1>
+                    <Header
+                        list={['home', 'work', 'about', 'contact']}
+                        onClick={this.props.onClick}
+                    />
+                </div>
+                <div className={this.state.placeholderClassName}> </div>
                 <div className={'color1'}>
-                    <ProjectList
-                        className={{'container': 'project-container', 'tile': '1-2-1-2-1-1'}}
-                        list={['one one one', 'twotwotwo', 'three three', 'four four', 'five five', 'six six']}
-                        title={"Academic Projects"}
-                         />
-                    <ProjectList
-                        className={{'container': 'project-container', 'tile': '2-1-1-1-1-2'}}
-                        list={['one one one', 'twotwotwo', 'three three', 'four four', 'five five', 'six six']}
-                        title={"Web App Projects"} />
+                    <AcademicProjectTemplate title={this.project} projectArray={this.projectArray}/>
                 </div>
                 <Footer
                     list={['home', 'work', 'about', 'contact']}
@@ -206,23 +260,39 @@ class Router extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 'index'
+            page: '/home'
         }
     }
 
     handleClick(e) {
-        const pageName = e.toLowerCase();
-        this.setState({
-            page: pageName
-        })
-        window.scrollTo(0, 0)
+            let pageName = e.toLowerCase().split(' ').join('-');
+            pageName = ('/').concat(pageName);
+            this.setState({
+                page: pageName
+            })
+            window.scrollTo(0, 0)
     }
     render() {
-        if (this.state.page === 'index' || this.state.page === 'home' ) {
+        if (this.state.page === '/home') {
             return <Index onClick={(e) => this.handleClick(e)}/>
         }
-        if (this.state.page === 'machine learning') {
-            return <ProjectPage onClick={(e) => this.handleClick(e)}/>
+        if (this.state.page === '/econometric-theory') {
+            return <ProjectPage onClick={(e) => this.handleClick(e)} project={this.state.page} projectArray={academicProjects[0].projects}/>
+        }
+        if (this.state.page === '/empirical-international-trade') {
+            return <ProjectPage onClick={(e) => this.handleClick(e)} project={this.state.page} projectArray={academicProjects[1].projects}/>
+        }
+        if (this.state.page === '/north-american-economic-history') {
+            return <ProjectPage onClick={(e) => this.handleClick(e)} project={this.state.page} projectArray={academicProjects[2].projects}/>
+        }
+        if (this.state.page === '/stochastic-processes') {
+            return <ProjectPage onClick={(e) => this.handleClick(e)} project={this.state.page} projectArray={academicProjects[3].projects}/>
+        }
+        if (this.state.page === '/applied-macroeconomics') {
+            return <ProjectPage onClick={(e) => this.handleClick(e)} project={this.state.page} projectArray={academicProjects[4].projects}/>
+        }
+        if (this.state.page === '/machine-learning') {
+            return <ProjectPage onClick={(e) => this.handleClick(e)} project={this.state.page} projectArray={academicProjects[5].projects}/>
         }
     }
 }

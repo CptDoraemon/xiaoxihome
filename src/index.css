@@ -16,14 +16,23 @@ code {
 p, h1, h2, h3, h4, h5{
     margin: 0;
 }
-
-.header-cover{
-    list-style: none;
-    text-transform: uppercase;
-    position: absolute;
-    top: 50px;
-    left: 100px;
+a {
+    text-decoration: none;
 }
+a:visited {
+    color: inherit;
+}
+a {
+    color: inherit;
+}
+/* header */
+.header-cover{
+     list-style: none;
+     text-transform: uppercase;
+     position: absolute;
+     top: 50px;
+     left: 100px;
+ }
 .header-cover ul{
     margin: 0;
     padding: 0;
@@ -31,7 +40,7 @@ p, h1, h2, h3, h4, h5{
 .header-cover li{
     display: inline-block;
     margin: 0 50px 0 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
     text-shadow: 2px 2px 8px #111;
     font-size: 18px;
     transition: 0.5s;
@@ -43,6 +52,60 @@ p, h1, h2, h3, h4, h5{
     transition: 0.5s;
     cursor: pointer;
 }
+/* header-fixed */
+.header-fixed{
+    list-style: none;
+    text-transform: uppercase;
+    height: 50px;
+    width: 100%;
+    background-color: rgb(37, 41, 45);
+    display: table;
+    z-index: 99;
+    position: relative;
+}
+.header-fixed h1{
+    background-color: rgb(37, 41, 45);
+    color: white;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+    position: relative;
+}
+.header-fixed ul{
+    margin: 0;
+    padding: 0 50px;
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    height: 50px;
+}
+.header-fixed li{
+    display: inline-block;
+    margin: 0 50px 0 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    transition: 0.5s;
+}
+.header-fixed li:hover{
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 1);
+    transition: 0.5s;
+    cursor: pointer;
+}
+.header-fixed-placeholder{
+    display: none;
+}
+.header-fixed-placeholder-scrolled{
+    display: block;
+    height: 100px;
+    position: relative;
+    background-color: rgb(37, 41, 45);
+}
+
+
+
 .cover {
     background-image: url("https://s3.us-east-2.amazonaws.com/xiaoxihome/cover-5k.jpg");
     background-repeat: no-repeat;
@@ -183,4 +246,37 @@ p, h1, h2, h3, h4, h5{
     right: 150px;
     color: rgba(255, 255, 255, 0.4);
     font-size: 14px;
+}
+
+.academic-project-template-wrapper {
+    padding: 150px 0;
+    position: relative;
+    min-height: 1000px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+.AcademicProjectBox{
+    width: 800px;
+    height: 500px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 40px 0;
+    padding: 20px 80px;
+}
+.AcademicProjectBox:hover {
+    cursor: pointer;
+    box-shadow:inset 0px 0px 0px 2px rgba(255, 255, 255, 0.8);
+    transition: 0.2s;
+}
+.AcademicProjectBox h2 {
+    margin: 40px;
+    text-transform: capitalize;
+}
+.AcademicProjectBox p {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.5em;
 }

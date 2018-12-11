@@ -1,15 +1,15 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -25,84 +25,8 @@ a:visited {
 a {
     color: inherit;
 }
-/* header */
-.header-cover{
-     list-style: none;
-     text-transform: uppercase;
-     position: absolute;
-     top: 50px;
-     left: 100px;
- }
-.header-cover ul{
-    margin: 0;
-    padding: 0;
-}
-.header-cover li{
-    display: inline-block;
-    margin: 0 50px 0 0;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 2px 2px 8px #111;
-    font-size: 18px;
-    transition: 0.5s;
-}
-.header-cover li:hover{
-    font-weight: bold;
-    letter-spacing: 5px;
-    color: rgba(255, 255, 255, 1);
-    transition: 0.5s;
-    cursor: pointer;
-}
-/* header-fixed */
-.header-fixed{
-    list-style: none;
-    text-transform: uppercase;
-    height: 50px;
-    width: 100%;
-    background-color: rgb(37, 41, 45);
-    display: table;
-    z-index: 99;
-    position: relative;
-}
-.header-fixed h1{
-    background-color: rgb(37, 41, 45);
-    color: white;
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    font-size: 35px;
-    position: relative;
-}
-.header-fixed ul{
-    margin: 0;
-    padding: 0 50px;
-    display: table-cell;
-    vertical-align: middle;
-    position: relative;
-    height: 50px;
-}
-.header-fixed li{
-    display: inline-block;
-    margin: 0 50px 0 0;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
-    transition: 0.5s;
-}
-.header-fixed li:hover{
-    font-weight: bold;
-    letter-spacing: 5px;
-    color: rgba(255, 255, 255, 1);
-    transition: 0.5s;
-    cursor: pointer;
-}
-.header-fixed-placeholder{
-    display: none;
-}
-.header-fixed-placeholder-scrolled{
-    display: block;
-    height: 100px;
-    position: relative;
-    background-color: rgb(37, 41, 45);
-}
+
+
 
 
 
@@ -111,15 +35,16 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
     height: 100vh;
 }
 .cover-intro {
     position: absolute;
-    top: 53%;
+    top: 50%;
     color: white;
     font-size: 72px;
+    line-height: 144px;
     font-weight: bold;
-    line-height: 100px;
     text-shadow: 5px 12px 20px #111;
     overflow: hidden;
     width: 100%;
@@ -173,6 +98,8 @@ a {
     background-color: rgba(255,255,255,0.2);;
     margin: 5px;
     display: table;
+    transition: 0.3s;
+    text-transform: capitalize;
 }
 .tile-big {
     width: 385px;
@@ -216,67 +143,4 @@ a {
     color: rgba(255, 255, 255, 1);
     transition: 0.5s;
     cursor: pointer;
-}
-.footer{
-    list-style: none;
-    text-transform: capitalize;
-    position: relative;
-    background-color: rgb(37, 41, 45);
-}
-.footer ul{
-    margin: 0;
-    padding: 50px;
-}
-.footer li{
-    width: fit-content;
-    display: block;
-    margin: 20px 50px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
-    transition: 0.5s;
-}
-.footer li:hover{
-    letter-spacing: 5px;
-    cursor: pointer;
-    transition: 0.5s;
-}
-.copyright {
-    position: absolute;
-    bottom: 70px;
-    right: 150px;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 14px;
-}
-
-.academic-project-template-wrapper {
-    padding: 150px 0;
-    position: relative;
-    min-height: 1000px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-}
-.AcademicProjectBox{
-    width: 800px;
-    height: 500px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.2);
-    margin: 40px 0;
-    padding: 20px 80px;
-}
-.AcademicProjectBox:hover {
-    cursor: pointer;
-    box-shadow:inset 0px 0px 0px 2px rgba(255, 255, 255, 0.8);
-    transition: 0.2s;
-}
-.AcademicProjectBox h2 {
-    margin: 40px;
-    text-transform: capitalize;
-}
-.AcademicProjectBox p {
-    text-align: left;
-    font-size: 14px;
-    line-height: 1.5em;
 }

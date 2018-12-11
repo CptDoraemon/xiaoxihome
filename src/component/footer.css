@@ -1,0 +1,30 @@
+.footer{
+    list-style: none;
+    text-transform: capitalize;
+    position: relative;
+    background-color: rgb(37, 41, 45);
+}
+.footer ul{
+    margin: 0;
+    padding: 50px;
+}
+.footer li{
+    width: fit-content;
+    display: block;
+    margin: 20px 50px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    transition: 0.5s;
+}
+.footer li:hover{
+    letter-spacing: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.copyright {
+    position: absolute;
+    bottom: 70px;
+    right: 150px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+}

@@ -39,4 +39,4 @@ function MouseIcon(props) {
     )
 }
 
-export default MouseIcon;
+export { MouseIcon };

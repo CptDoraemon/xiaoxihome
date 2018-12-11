@@ -1,4 +1,4 @@
-const academicProjects = [
+const academicProjectsData = [
     {
         title: 'econometric theory',
         projects: [
@@ -109,4 +109,4 @@ const academicProjects = [
     }
 ]
 
-export default academicProjects;
+export default academicProjectsData;

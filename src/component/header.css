@@ -1,0 +1,88 @@
+/*       */
+.header-cover{
+    list-style: none;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+}
+.header-cover ul{
+    margin: 0;
+    padding: 0;
+}
+.header-cover li{
+    display: inline-block;
+    margin: 0 75px 0 0;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 8px #111;
+    font-size: 18px;
+    transition: 0.5s;
+}
+.header-cover li:hover{
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 1);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
+
+
+
+/*        */
+.header-fixed{
+    list-style: none;
+    text-transform: uppercase;
+    height: 100px;
+    width: 100%;
+    background-color: rgb(37, 41, 45);
+    z-index: 99;
+    position: relative;
+}
+.header-fixed h1{
+    background-color: rgb(37, 41, 45);
+    color: white;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+}
+.header-fixed ul{
+    margin: 0;
+    padding: 0 50px;
+    transition: 0.3s;
+    height: 50px;
+}
+.header-fixed li{
+    display: inline-block;
+    margin: 0 50px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    transition: 0.5s;
+    line-height: 50px;
+}
+.header-fixed li:hover{
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 1);
+    transition: 0.5s;
+    cursor: pointer;
+}
+/* FOR STICKY IN EFFECT */
+.fixed {
+    position: fixed !important;
+    top: -50px;
+}
+.fixed li {
+   margin: 0 25px !important;
+}
+.header-fixed-placeholder{
+    display: none;
+}
+.header-fixed-placeholder-scrolled{
+    display: block;
+    height: 100px;
+    position: relative;
+    background-color: rgb(37, 41, 45);
+}

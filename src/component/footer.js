@@ -2,24 +2,68 @@ import React from 'react';
 import './footer.css';
 import { Link } from "react-router-dom";
 
-function NavItem(props) {
-    return (
-        <Link to={'/' + props.value}>
-            <li> {props.value} </li>
-        </Link>
-    )
-}
-
 class Footer extends React.Component {
+    // It receives props listAndArray
+    constructor(props){
+        super(props)
+        this.state={
+            dropListClassName: 'drop-list-inactive'
+        }
+    }
+    dropListActive() {
+        this.setState({
+            dropListClassName: 'drop-list-active'
+        })
+    }
+    dropListInactive() {
+        this.setState({
+            dropListClassName: 'drop-list-inactive'
+        })
+    }
+
     render() {
         return (
             <div className='footer'>
-                <ul>
-                    <NavItem value={'home'} />
-                    <NavItem value={'work'} />
-                    <NavItem value={'about'} />
-                    <NavItem value={'contact'} />
-                </ul>
+                <div className='nav-bar'>
+                    <ul>
+                        <Link to='/home'><li>home</li></Link>
+                        <li onMouseEnter={() => this.dropListActive()}>work</li>
+                        <Link to='/about'><li>about</li></Link>
+                        <Link to='/contact'><li>contact</li></Link>
+                    </ul>
+                </div>
+                <div className='footer-flexbox' onMouseLeave={() => this.dropListInactive()} >
+                    <div className={ this.state.dropListClassName } >
+                        <h5>Academic Projects</h5>
+                        { this.props.listAndLink.academicProjectArray.map((i, index) => {
+                            return (
+                                <Link to={this.props.listAndLink.academicProjectLinkArray[index]}>
+                                    <p>{i}</p>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                    <div className={ this.state.dropListClassName } >
+                        <h5>Web App Projects</h5>
+                        { this.props.listAndLink.webAppProjectArray.map((i, index) => {
+                            return (
+                                <Link to={this.props.listAndLink.webAppProjectLinkArray[index]}>
+                                    <p>{i}</p>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                    <div className={ this.state.dropListClassName } >
+                        <h5>Gallery</h5>
+                        { this.props.listAndLink.galleryArray.map((i, index) => {
+                            return (
+                                <Link to={this.props.listAndLink.galleryLinkArray[index]}>
+                                    <p>{i}</p>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </div>
                 <div className='copyright'>
                     <p>&copy; Xiaoxi 2018</p>
                 </div>

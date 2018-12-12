@@ -2,25 +2,68 @@ import React from 'react';
 import './header.css';
 import { Link } from "react-router-dom";
 
-function NavItem(props) {
-    return (
-        <Link to={'/' + props.value}>
-            <li> {props.value} </li>
-        </Link>
-    )
-}
-
-
 class HeaderCover extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            dropDownClassName: 'work-drop-down-inactive'
+        }
+    }
+    workDropDownListActive() {
+        this.setState({
+            dropDownClassName: 'work-drop-down-active'
+        })
+    }
+    workDropDownListInactive() {
+        this.setState({
+            dropDownClassName: 'work-drop-down-inactive'
+        })
+    }
     render() {
+        //It receives props: listAndLink
         return (
             <div className='header-cover'>
                 <ul>
-                    <NavItem value={'home'} />
-                    <NavItem value={'work'} />
-                    <NavItem value={'about'} />
-                    <NavItem value={'contact'} />
+                    <Link to='/home'>
+                        <li>home</li>
+                    </Link>
+                    <li onMouseEnter={() => this.workDropDownListActive()} >
+                        work
+                    </li>
+                    <Link to='/about'>
+                        <li>about</li>
+                    </Link>
+                    <Link to='/contact'>
+                        <li>contact</li>
+                    </Link>
                 </ul>
+
+                <div className={this.state.dropDownClassName} onMouseLeave={() => this.workDropDownListInactive()}>
+                    <h5>Academic Projects</h5>
+                    { this.props.listAndLink.academicProjectArray.map((i, index) => {
+                        return (
+                            <Link to={this.props.listAndLink.academicProjectLinkArray[index]}>
+                                <p>{i}</p>
+                            </Link>
+                        )
+                    })}
+                    <h5>Web App Projects</h5>
+                    { this.props.listAndLink.webAppProjectArray.map((i, index) => {
+                        return (
+                            <Link to={this.props.listAndLink.webAppProjectLinkArray[index]}>
+                                <p>{i}</p>
+                            </Link>
+                        )
+                    })}
+                    <h5>Gallery</h5>
+                    { this.props.listAndLink.galleryArray.map((i, index) => {
+                        return (
+                            <Link to={this.props.listAndLink.galleryLinkArray[index]}>
+                                <p>{i}</p>
+                            </Link>
+                        )
+                    })}
+                </div>
             </div>
         )
     }
@@ -31,7 +74,8 @@ class HeaderSticky extends React.Component {
         super(props);
         this.state = {
             headerClassName: 'header-fixed',
-            placeholderClassName: 'header-fixed-placeholder'
+            placeholderClassName: 'header-fixed-placeholder',
+            dropDownClassName: 'work-drop-down-inactive'
         }
         this.handleScroll = this.handleScroll.bind(this);
 
@@ -58,17 +102,60 @@ class HeaderSticky extends React.Component {
         }
 
     }
+    workDropDownListActive() {
+        this.setState({
+            dropDownClassName: 'work-drop-down-active'
+        })
+    }
+    workDropDownListInactive() {
+        this.setState({
+            dropDownClassName: 'work-drop-down-inactive'
+        })
+    }
     render() {
+        //It receives props: listAndLink
         return (
             <div>
                 <div className={this.state.headerClassName}>
                     <h1> {this.props.headerTitle} </h1>
                     <ul>
-                        <NavItem value={'home'} />
-                        <NavItem value={'work'} />
-                        <NavItem value={'about'} />
-                        <NavItem value={'contact'} />
+                        <Link to='/home'>
+                            <li>home</li>
+                        </Link>
+                        <li onMouseEnter={() => this.workDropDownListActive()} >work</li>
+                        <Link to='/about'>
+                            <li>about</li>
+                        </Link>
+                        <Link to='/contact'>
+                            <li>contact</li>
+                        </Link>
                     </ul>
+                    <div className={this.state.dropDownClassName} onMouseLeave={() => this.workDropDownListInactive()}>
+                        <h5>Academic Projects</h5>
+                        { this.props.listAndLink.academicProjectArray.map((i, index) => {
+                            return (
+                                <Link to={this.props.listAndLink.academicProjectLinkArray[index]}>
+                                    <p>{i}</p>
+                                </Link>
+                            )
+                        })}
+                        <h5>Web App Projects</h5>
+                        { this.props.listAndLink.webAppProjectArray.map((i, index) => {
+                            return (
+                                <Link to={this.props.listAndLink.webAppProjectLinkArray[index]}>
+                                    <p>{i}</p>
+                                </Link>
+                            )
+                        })}
+                        <h5>Gallery</h5>
+                        { this.props.listAndLink.galleryArray.map((i, index) => {
+                            return (
+                                <Link to={this.props.listAndLink.galleryLinkArray[index]}>
+                                    <p>{i}</p>
+                                </Link>
+                            )
+                        })}
+                    </div>
                 </div>
                 <div className={this.state.placeholderClassName}> </div>
             </div>

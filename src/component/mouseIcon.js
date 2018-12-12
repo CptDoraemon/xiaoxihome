@@ -2,8 +2,9 @@ import React from 'react';
 import './mouseIcon.css';
 
 function MouseIcon(props) {
+    // It receives prop onClickMouseIcon={this.scrollToWorkRef}
     return (
-        <div className={props.className}>
+        <div className={props.className} onClick={() => props.onClickMouseIcon()}>
             <style>
             </style>
             <svg

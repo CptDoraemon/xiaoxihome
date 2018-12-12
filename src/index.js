@@ -8,6 +8,54 @@ import { AcademicProject } from './app/academicProjects';
 import { Frontpage } from './app/frontpage';
 import { Missing404 } from './component/missing404';
 
+const academicProjectArray = [
+    'Machine Learning',
+    'Empirical International Trade',
+    'North American Economic History',
+    'Stochastic Processes',
+    'Applied Macroeconomics',
+    'Econometric Theory'
+];
+const webAppProjectArray = [
+    'Reddit-like Website',
+    'FireworkJS',
+    'SnakeyJS',
+    'PHP/MySQL Login System',
+    'DOM Practice',
+    'RaycasterJS'
+    ];
+const galleryArray = [
+    'Toronto',
+    'Canada',
+    'Banff',
+    'Hometown',
+    'YorkU',
+    'Astro'
+];
+
+const academicProjectLinkArray = [];
+const webAppProjectLinkArray = [];
+const galleryLinkArray = [];
+function convertToLink(array, linkArray) {
+    array.map((i) => {
+        let item = i.toLowerCase().split(' ').join('-').replace('/', '');
+        item = ('/').concat(item);
+        linkArray.push(item);
+    });
+}
+convertToLink(academicProjectArray, academicProjectLinkArray);
+convertToLink(webAppProjectArray, webAppProjectLinkArray);
+convertToLink(galleryArray, galleryLinkArray);
+const listAndLink = {
+    academicProjectArray: academicProjectArray,
+    webAppProjectArray: webAppProjectArray,
+    galleryArray: galleryArray,
+    academicProjectLinkArray: academicProjectLinkArray,
+    webAppProjectLinkArray: webAppProjectLinkArray,
+    galleryLinkArray: galleryLinkArray
+}
+
+
 
 
 class App extends React.Component {
@@ -16,14 +64,15 @@ class App extends React.Component {
             <Router>
                 <ScrollToTop>
                 <Switch>
-                    <Route path="/" exact component={Frontpage} />
-                    <Route path="/home" component={Frontpage} />
-                    <Route path="/academic-project/econometric-theory" render={(props) => <AcademicProject {...props} name='econometric theory'/>} />
-                    <Route path="/academic-project/empirical-international-trade" render={(props) => <AcademicProject {...props} name='empirical international trade'/>} />
-                    <Route path="/academic-project/north-american-economic-history" render={(props) => <AcademicProject {...props} name='north american economic history'/>} />
-                    <Route path="/academic-project/stochastic-processes" render={(props) => <AcademicProject {...props} name='stochastic processes'/>} />
-                    <Route path="/academic-project/applied-macroeconomics" render={(props) => <AcademicProject {...props} name='applied macroeconomics'/>} />
-                    <Route path="/academic-project/machine-learning" render={(props) => <AcademicProject {...props} name='machine learning'/>} />
+                    <Route path="/" exact render={(props) => <Frontpage {...props} listAndLink={listAndLink} />} />
+                    <Route path="/home" exact render={(props) => <Frontpage {...props} listAndLink={listAndLink} />} />
+                    <Route path="/work" exact key='work' render={(props) => <Frontpage {...props} toWorkRef={true} listAndLink={listAndLink} />} />
+                    <Route path="/econometric-theory" render={(props) => <AcademicProject {...props} name='econometric theory' listAndLink={listAndLink}/>} />
+                    <Route path="/empirical-international-trade" render={(props) => <AcademicProject {...props} name='empirical international trade' listAndLink={listAndLink}/>} />
+                    <Route path="/north-american-economic-history" render={(props) => <AcademicProject {...props} name='north american economic history' listAndLink={listAndLink}/>} />
+                    <Route path="/stochastic-processes" render={(props) => <AcademicProject {...props} name='stochastic processes' listAndLink={listAndLink}/>} />
+                    <Route path="/applied-macroeconomics" render={(props) => <AcademicProject {...props} name='applied macroeconomics' listAndLink={listAndLink}/>} />
+                    <Route path="/machine-learning" render={(props) => <AcademicProject {...props} name='machine learning' listAndLink={listAndLink}/>} />
                     <Route component={ Missing404 } />
                 </Switch>
                 </ScrollToTop>

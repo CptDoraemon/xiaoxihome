@@ -7,15 +7,17 @@ import { MouseIcon } from "../component/mouseIcon"
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 function Cover(props) {
+    // It receives a prop onClickMouseIcon={this.scrollToWorkRef}
     return (
         <div className='cover'>
             <h1 className='cover-intro'>Welcome To Xiaoxi's Home!</h1>
-            <MouseIcon className='mouse-icon'/>
+            <MouseIcon className='mouse-icon' onClickMouseIcon={props.onClickMouseIcon}/>
         </div>
     )
 }
 
 function Tile(props) {
+    //receives props: link, className, tileName, imgUrl
     // tile for gallery
     if (props.imgUrl) {
         return (
@@ -27,10 +29,8 @@ function Tile(props) {
         )
     }
     // tile for projects
-    let link = props.tileName.split(' ').join('-');
-    link = ('/academic-project/').concat(link);
     return (
-        <Link to={link}>
+        <Link to={props.link}>
             <div
                 className={props.className}>
                 <h3>{props.tileName}</h3>
@@ -41,7 +41,11 @@ function Tile(props) {
 
 class ProjectList extends React.Component {
     render() {
-        let tiles = [...this.props.list];
+        //props: type: academic, webApp, gallery
+        //props: listAndLink
+        //props: if(gallery) imgUrls
+
+        /*let tiles = [...this.props.list];
         const tileSize = (index) => {
             if ((this.props.className.tile === '1-2-1-2-1-1' && (index === 1 || index === 3))
             || ((this.props.className.tile === '2-1-1-1-1-2' && (index === 0 || index === 5)))) {
@@ -67,36 +71,98 @@ class ProjectList extends React.Component {
                 </div>
             </div>
         );
+        */
+
+        // Academic Project List
+        if (this.props.type === 'academic') {
+            const array = [...this.props.listAndArray.academicProjectArray];
+            const linkArray = [...this.props.listAndArray.academicProjectLinkArray];
+            return (
+                <div className='project-container'>
+                    <h2>Academic Projects</h2>
+                    <div className='flexbox-wrapper-800'>
+                        {array.map((i, index) => {
+                            const tileSize = (index === 1 || index === 3) ? 'tile-big' : 'tile-sm';
+                            return <Tile link={linkArray[index]} tileName={i} className={tileSize} />
+                        })}
+                    </div>
+                </div>
+            )
+        }
+
+        // Web App Project List
+        if (this.props.type === 'webApp') {
+            const array = [...this.props.listAndArray.webAppProjectArray];
+            const linkArray = [...this.props.listAndArray.webAppProjectLinkArray];
+            return (
+                <div className='project-container'>
+                    <h2>Web App Projects</h2>
+                    <div className='flexbox-wrapper-800'>
+                        {array.map((i, index) => {
+                            const tileSize = (index === 0 || index === 5) ? 'tile-big' : 'tile-sm';
+                            return <Tile link={linkArray[index]} tileName={i} className={tileSize} />
+                        })}
+                    </div>
+                </div>
+            )
+        }
+
+        // Gallery Project List
+        if (this.props.type === 'gallery') {
+            const array = [...this.props.listAndArray.galleryArray];
+            const linkArray = [...this.props.listAndArray.galleryLinkArray];
+            return (
+                <div className='project-container'>
+                    <h2>Web App Projects</h2>
+                    <div className='flexbox-wrapper-800'>
+                        {array.map((i, index) => {
+                            const tileSize = 'tile-gallery';
+                            const imgUrl = this.props.imgUrls[index];
+                            return <Tile link={linkArray[index]} tileName={i} className={tileSize} imgUrl={imgUrl}/>
+                        })}
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
 class Frontpage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.workRef = React.createRef();
+        this.state = {
+            toWorkRef: this.props.toWorkRef,
+        }
+    }
+    scrollToWorkRef = () => {
+        window.scrollTo({
+            top: this.workRef.current.offsetTop,
+            behavior: 'smooth'
+        })
+    };
+    componentDidMount() {
+        if (this.state.toWorkRef) this.scrollToWorkRef();
+    }
     render() {
+        //It receives props: listAndLink
         return (
             <div>
-                <HeaderCover />
-                <Cover />
+                <HeaderCover listAndLink={this.props.listAndLink} />
+                <Cover onClickMouseIcon={this.scrollToWorkRef}/>
                 <div className={'color1'}>
+                    <div ref={this.workRef}></div>
                     <ProjectList
-                        className={{'container': 'project-container', 'tile': '1-2-1-2-1-1'}}
-                        list={[
-                            'machine learning',
-                            'empirical international trade',
-                            'north american economic history',
-                            'stochastic processes',
-                            'applied macroeconomics',
-                            'econometric theory'
-                        ]}
-                        title={"Academic Projects"} />
+                        type='academic'
+                        listAndArray={this.props.listAndLink} />
                     <ProjectList
-                        className={{'container': 'project-container', 'tile': '2-1-1-1-1-2'}}
-                        list={['one one one', 'twotwotwo', 'three three', 'four four', 'five five', 'six six']}
-                        title={"Web App Projects"} />
+                        type='webApp'
+                        listAndArray={this.props.listAndLink} />
                 </div>
-                <div className={'color2'}>
+                <div className={'color-dark'}>
                     <ProjectList
-                        className={{'container': 'project-container', 'tile': 'gallery'}}
-                        list={['Toronto', 'Canada', 'Banff', 'Hometown', 'YorkU', 'Astro']}
+                        type='gallery'
+                        listAndArray={this.props.listAndLink}
                         imgUrls={[
                             'https://s3.us-east-2.amazonaws.com/xiaoxihome/galleryphoto/preview/toronto.png',
                             'https://s3.us-east-2.amazonaws.com/xiaoxihome/galleryphoto/preview/canada.png',
@@ -104,10 +170,9 @@ class Frontpage extends React.Component {
                             'https://s3.us-east-2.amazonaws.com/xiaoxihome/galleryphoto/preview/hometown.png',
                             'https://s3.us-east-2.amazonaws.com/xiaoxihome/galleryphoto/preview/yorku.png',
                             'https://s3.us-east-2.amazonaws.com/xiaoxihome/galleryphoto/preview/astro.png'
-                        ]}
-                        title={"Photography"} />
+                        ]} />
                 </div>
-                <Footer />
+                <Footer listAndLink={this.props.listAndLink}/>
             </div>
         )
     }

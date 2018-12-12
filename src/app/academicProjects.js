@@ -34,15 +34,16 @@ function AcademicProjectBox(props) {
 
 class AcademicProject extends React.Component{
     // It receives a name props as the subject name. name is in the form of "aaa bbb"
+    // It receives prop listAndArray
     render() {
         let name = this.props.name;
         const project = academicProjectsData.filter((i) => i.title === name);
         const projectDataArray = [...project[0].projects];
         return (
             <div>
-                <HeaderSticky headerTitle='Academic Project'/>
+                <HeaderSticky headerTitle='Academic Project' listAndLink={this.props.listAndLink}/>
                 <AcademicProjectTemplate name={name} projectDataArray={projectDataArray}/>
-                <Footer />
+                <Footer listAndLink={this.props.listAndLink} />
             </div>
         )
     }

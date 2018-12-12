@@ -4,7 +4,7 @@
     text-transform: uppercase;
     position: absolute;
     top: 50px;
-    left: 100px;
+    left: 50px;
 }
 .header-cover ul{
     margin: 0;
@@ -12,9 +12,8 @@
 }
 .header-cover li{
     display: inline-block;
-    margin: 0 75px 0 0;
+    margin: 0 40px;
     color: rgba(255, 255, 255, 0.9);
-    text-shadow: 2px 2px 8px #111;
     font-size: 18px;
     transition: 0.5s;
 }
@@ -24,6 +23,37 @@
     color: rgba(255, 255, 255, 1);
     transition: 0.5s;
     cursor: pointer;
+}
+
+/* DORP DOWN LIST */
+.work-drop-down-active {
+    position: absolute;
+    color: white;
+    margin: 10px 0 0 150px;
+    width: fit-content;
+    text-align: left;
+    z-index: 99;
+}
+.work-drop-down-active h5{
+    text-transform: capitalize;
+    background-color: rgba(37, 41, 45, 1);
+    font-size: 18px;
+    line-height: 2em;
+    padding: 0 20px;
+}
+.work-drop-down-active p{
+    text-transform: capitalize;
+    background-color: rgba(37, 41, 45, 0.8);
+    font-size: 14px;
+    line-height: 2em;
+    padding: 0 30px;
+}
+.work-drop-down-active p:hover{
+    background-color: rgba(37, 41, 45, 1);
+    cursor: pointer;
+}
+.work-drop-down-inactive{
+    display: none;
 }
 
 

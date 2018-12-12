@@ -10,9 +10,9 @@ class Footer extends React.Component {
             dropListClassName: 'drop-list-inactive'
         }
     }
-    dropListActive() {
+    dropListToggle() {
         this.setState({
-            dropListClassName: 'drop-list-active'
+            dropListClassName: this.state.dropListClassName === 'drop-list-active' ? 'drop-list-inactive' : 'drop-list-active'
         })
     }
     dropListInactive() {
@@ -27,7 +27,7 @@ class Footer extends React.Component {
                 <div className='nav-bar'>
                     <ul>
                         <Link to='/home'><li>home</li></Link>
-                        <li onMouseEnter={() => this.dropListActive()}>work</li>
+                        <li onClick={() => this.dropListToggle()}>work</li>
                         <Link to='/about'><li>about</li></Link>
                         <Link to='/contact'><li>contact</li></Link>
                     </ul>

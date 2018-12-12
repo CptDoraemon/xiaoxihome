@@ -9,9 +9,9 @@ class HeaderCover extends React.Component {
             dropDownClassName: 'work-drop-down-inactive'
         }
     }
-    workDropDownListActive() {
+    workDropDownListToggle() {
         this.setState({
-            dropDownClassName: 'work-drop-down-active'
+            dropDownClassName: this.state.dropDownClassName === 'work-drop-down-active' ? 'work-drop-down-inactive' : 'work-drop-down-active'
         })
     }
     workDropDownListInactive() {
@@ -27,7 +27,7 @@ class HeaderCover extends React.Component {
                     <Link to='/home'>
                         <li>home</li>
                     </Link>
-                    <li onMouseEnter={() => this.workDropDownListActive()} >
+                    <li onClick={() => this.workDropDownListToggle()} >
                         work
                     </li>
                     <Link to='/about'>
@@ -102,9 +102,9 @@ class HeaderSticky extends React.Component {
         }
 
     }
-    workDropDownListActive() {
+    workDropDownListToggle() {
         this.setState({
-            dropDownClassName: 'work-drop-down-active'
+            dropDownClassName: this.state.dropDownClassName === 'work-drop-down-active' ? 'work-drop-down-inactive' : 'work-drop-down-active'
         })
     }
     workDropDownListInactive() {
@@ -122,7 +122,7 @@ class HeaderSticky extends React.Component {
                         <Link to='/home'>
                             <li>home</li>
                         </Link>
-                        <li onMouseEnter={() => this.workDropDownListActive()} >work</li>
+                        <li onClick={() => this.workDropDownListToggle()}  >work</li>
                         <Link to='/about'>
                             <li>about</li>
                         </Link>

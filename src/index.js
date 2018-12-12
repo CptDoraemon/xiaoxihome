@@ -60,6 +60,23 @@ const listAndLink = {
 
 
 class App extends React.Component {
+    componentDidMount(){
+        const title = [
+            '⊂(˃̶͈̀ε ˂̶͈́ ⊂ )))Σ≡=─',
+            '( ⸝⸝⸝°_°⸝⸝⸝ )',
+            'ฅʕ•̫͡•ʔฅ',
+            '(ง •̀_•́)ง',
+            'ＺZz...(¦3ꇤ[▓▓]',
+            '୧(˶‾᷄ ⁻̫ ‾᷅˵)୨',
+            'ᕕ( ᐛ )ᕗ',
+            'ᶘ ᵒᴥᵒᶅ',
+            '┌|°з°|┘└|°ε°|┐┌|°э°|┘',
+            'ヽ(‘ ∇‘ )ノ',
+            '₍˄·͈༝·͈˄₎ฅ˒˒',
+        ];
+        const pickOne = Math.floor(Math.random() * title.length );
+        document.title = 'Xiaoxi\'s Home' + title[pickOne];
+    }
     render() {
         return (
             <Router>

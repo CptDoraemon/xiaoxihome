@@ -21,11 +21,13 @@ function Tile(props) {
     // tile for gallery
     if (props.imgUrl) {
         return (
-            <div
-                className={props.className}
-                style={{backgroundImage: 'url("' + props.imgUrl + '")'}}>
-                <h5>{props.tileName}</h5>
-            </div>
+            <Link to={props.link}>
+                <div
+                    className={props.className}
+                    style={{backgroundImage: 'url("' + props.imgUrl + '")'}}>
+                    <h5>{props.tileName}</h5>
+                </div>
+            </Link>
         )
     }
     // tile for projects
@@ -45,41 +47,13 @@ class ProjectList extends React.Component {
         //props: listAndLink
         //props: if(gallery) imgUrls
 
-        /*let tiles = [...this.props.list];
-        const tileSize = (index) => {
-            if ((this.props.className.tile === '1-2-1-2-1-1' && (index === 1 || index === 3))
-            || ((this.props.className.tile === '2-1-1-1-1-2' && (index === 0 || index === 5)))) {
-                return 'tile-big'
-            } else if (this.props.className.tile === 'gallery') {
-                return 'tile-gallery'
-            } else return 'tile-sm'
-        };
-        tiles = tiles.map((i, index) => {
-            return (
-                <Tile
-                    className={tileSize(index)}
-                    tileName={i}
-                    imgUrl={tileSize(index) === 'tile-gallery' ? this.props.imgUrls[index] : null}
-                />
-            )
-        });
-        return (
-            <div className={this.props.className.container}>
-                <h2>{this.props.title}</h2>
-                <div className='flexbox-wrapper-800'>
-                    {tiles}
-                </div>
-            </div>
-        );
-        */
-
         // Academic Project List
         if (this.props.type === 'academic') {
             const array = [...this.props.listAndArray.academicProjectArray];
             const linkArray = [...this.props.listAndArray.academicProjectLinkArray];
             return (
                 <div className='project-container'>
-                    <h2>Academic Projects</h2>
+                    <h2>Academic Project</h2>
                     <div className='flexbox-wrapper-800'>
                         {array.map((i, index) => {
                             const tileSize = (index === 1 || index === 3) ? 'tile-big' : 'tile-sm';
@@ -96,7 +70,7 @@ class ProjectList extends React.Component {
             const linkArray = [...this.props.listAndArray.webAppProjectLinkArray];
             return (
                 <div className='project-container'>
-                    <h2>Web App Projects</h2>
+                    <h2>Web App Project</h2>
                     <div className='flexbox-wrapper-800'>
                         {array.map((i, index) => {
                             const tileSize = (index === 0 || index === 5) ? 'tile-big' : 'tile-sm';
@@ -113,7 +87,7 @@ class ProjectList extends React.Component {
             const linkArray = [...this.props.listAndArray.galleryLinkArray];
             return (
                 <div className='project-container'>
-                    <h2>Web App Projects</h2>
+                    <h2>Photography</h2>
                     <div className='flexbox-wrapper-800'>
                         {array.map((i, index) => {
                             const tileSize = 'tile-gallery';

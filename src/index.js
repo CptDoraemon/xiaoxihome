@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import ScrollToTop from './component/scrolltotop'
 import { AcademicProject } from './app/academicProjects';
+import { WebAppProject } from './app/webAppProjects';
 import { Frontpage } from './app/frontpage';
 import { Missing404 } from './component/missing404';
 
@@ -73,6 +74,13 @@ class App extends React.Component {
                     <Route path="/stochastic-processes" render={(props) => <AcademicProject {...props} name='stochastic processes' listAndLink={listAndLink}/>} />
                     <Route path="/applied-macroeconomics" render={(props) => <AcademicProject {...props} name='applied macroeconomics' listAndLink={listAndLink}/>} />
                     <Route path="/machine-learning" render={(props) => <AcademicProject {...props} name='machine learning' listAndLink={listAndLink}/>} />
+
+                    <Route path={webAppProjectLinkArray[0]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[0]} listAndLink={listAndLink} />} />
+                    <Route path={webAppProjectLinkArray[1]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[1]} listAndLink={listAndLink} />} />
+                    <Route path={webAppProjectLinkArray[2]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[2]} listAndLink={listAndLink} />} />
+                    <Route path={webAppProjectLinkArray[3]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[3]} listAndLink={listAndLink} />} />
+                    <Route path={webAppProjectLinkArray[4]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[4]} listAndLink={listAndLink} />} />
+                    <Route path={webAppProjectLinkArray[5]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[5]} listAndLink={listAndLink} />} />
                     <Route component={ Missing404 } />
                 </Switch>
                 </ScrollToTop>

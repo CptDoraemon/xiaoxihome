@@ -8,6 +8,7 @@ import { AcademicProject } from './app/academicProjects';
 import { WebAppProject } from './app/webAppProjects';
 import { Frontpage } from './app/frontpage';
 import { Missing404 } from './component/missing404';
+import { Gallery } from './app/gallery/gallery';
 
 const academicProjectArray = [
     'Machine Learning',
@@ -66,7 +67,7 @@ class App extends React.Component {
             '( ⸝⸝⸝°_°⸝⸝⸝ )',
             'ฅʕ•̫͡•ʔฅ',
             '(ง •̀_•́)ง',
-            'ＺZz...(¦3ꇤ[▓▓]',
+            'Zzz...(¦3ꇤ[▓▓]',
             '୧(˶‾᷄ ⁻̫ ‾᷅˵)୨',
             'ᕕ( ᐛ )ᕗ',
             'ᶘ ᵒᴥᵒᶅ',
@@ -78,6 +79,7 @@ class App extends React.Component {
         document.title = 'Xiaoxi\'s Home' + title[pickOne];
     }
     render() {
+
         return (
             <Router>
                 <ScrollToTop>
@@ -98,6 +100,13 @@ class App extends React.Component {
                     <Route path={webAppProjectLinkArray[3]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[3]} listAndLink={listAndLink} />} />
                     <Route path={webAppProjectLinkArray[4]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[4]} listAndLink={listAndLink} />} />
                     <Route path={webAppProjectLinkArray[5]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[5]} listAndLink={listAndLink} />} />
+
+                    <Route path={galleryLinkArray[0]} render={(props) => <Gallery {...props} album={0} page={1} /> } />
+                    <Route path={galleryLinkArray[1]} render={(props) => <Gallery {...props} album={1} page={1} /> } />
+                    <Route path={galleryLinkArray[2]} render={(props) => <Gallery {...props} album={2} page={1} /> } />
+                    <Route path={galleryLinkArray[3]} render={(props) => <Gallery {...props} album={3} page={1} /> } />
+                    <Route path={galleryLinkArray[4]} render={(props) => <Gallery {...props} album={4} page={1} /> } />
+                    <Route path={galleryLinkArray[5]} render={(props) => <Gallery {...props} album={5} page={1} /> } />
                     <Route component={ Missing404 } />
                 </Switch>
                 </ScrollToTop>

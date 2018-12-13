@@ -3,25 +3,28 @@
     list-style: none;
     text-transform: uppercase;
     position: absolute;
-    top: 50px;
+    top: 35px; /* ul has padding for better accessibility */
     left: 50px;
 }
 .header-cover ul{
     margin: 0;
     padding: 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+.header-cover ul:hover {
+    color: rgba(255, 255, 255, 1);
 }
 .header-cover li{
     display: inline-block;
     margin: 0 40px;
-    color: rgba(255, 255, 255, 0.9);
     font-size: 18px;
-    transition: 0.5s;
+    line-height: 36px;
+    transition: 0.3s;
 }
 .header-cover li:hover{
     font-weight: bold;
     letter-spacing: 5px;
-    color: rgba(255, 255, 255, 1);
-    transition: 0.5s;
+    transition: 0.3s;
     cursor: pointer;
 }
 
@@ -33,6 +36,7 @@
     width: fit-content;
     text-align: left;
     z-index: 99;
+    padding-bottom: 28px; /* add some safe zone at bottom */
 }
 .work-drop-down-active h5{
     text-transform: capitalize;
@@ -50,6 +54,7 @@
 }
 .work-drop-down-active p:hover{
     background-color: rgba(37, 41, 45, 1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 1);
     cursor: pointer;
 }
 .work-drop-down-inactive{
@@ -81,7 +86,6 @@
 .header-fixed ul{
     margin: 0;
     padding: 0 50px;
-    transition: 0.3s;
     height: 50px;
 }
 .header-fixed li{
@@ -89,14 +93,14 @@
     margin: 0 50px;
     color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
-    transition: 0.5s;
+    transition: 0.3s;
     line-height: 50px;
 }
 .header-fixed li:hover{
     font-weight: bold;
     letter-spacing: 5px;
     color: rgba(255, 255, 255, 1);
-    transition: 0.5s;
+    transition: 0.3s;
     cursor: pointer;
 }
 /* FOR STICKY IN EFFECT */

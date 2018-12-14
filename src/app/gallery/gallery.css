@@ -15,13 +15,6 @@
     width: 100%;
     height: 100%;
 }
-.text {
-    position: fixed;
-    bottom: 50px;
-    width: 100%;
-    text-align: center;
-    color: white;
-}
 
 
 /* HUD */
@@ -31,15 +24,45 @@
 }
 .hud-off {
     opacity: 0.1;
-    transition: 0.3s
+    transition: 3s
 }
 .nav-buttons {
-    color: white;
     position: fixed;
-    left: calc(50vw - 72px);
+    width: 100vw;
     top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
     z-index: 99;
 }
+.tooltip{
+    position: relative;
+    padding: 0 16px;
+    color: white;
+    transition: 0.3s;
+}
+.tooltip-text{
+    position: absolute;
+    font-size: 12px;
+    background-color: black;
+    width: fit-content;
+    padding: 4px 6px;
+    top: 100%;
+    left: 0;
+    text-align: center;
+    visibility: hidden;
+    color: white !important;
+}
+.tooltip:hover .tooltip-text{
+    visibility: visible;
+}
+.tooltip:hover {
+    cursor: pointer;
+    color: black;
+    transition: 0.3s;
+}
+
 .menu {
     color: white;
     position: fixed;
@@ -56,9 +79,12 @@
 .menu li {
     display: inline;
     z-index: 99;
+    transition: 0.3s;
 }
 .menu li:hover {
     cursor: pointer;
+    color: black;
+    transition: 0.3s;
 }
 .thumbnail-active-text {
     position: fixed;
@@ -73,9 +99,17 @@
     width: 200px;
     height: 100px;
     background-position: center;
-    background-size: auto 100%;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 .thumbnail-inactive {
     display: none;
+}
+
+.text {
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    color: white;
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './gallery.css'
 import { galleryData } from './galleryData';
 
-import { IoIosArrowDropleft,  IoIosArrowDropright, IoMdHome, IoMdRadioButtonOff, IoMdRadioButtonOn, IoMdPlay} from "react-icons/io";
+import { IoIosArrowDropleft,  IoIosArrowDropright, IoIosPower, IoMdRadioButtonOff, IoMdRadioButtonOn, IoMdAlbums, IoIosPause, IoIosPlay} from "react-icons/io";
 
 
 function Show(props) {
@@ -17,7 +17,8 @@ function Show(props) {
         )
 }
 class Hud extends React.Component {
-    // It receives props album, pages, title, description, handleClick
+    // It receives props album, pages, title, description
+    //handleClickMenu, handleClickLeft, handleClickRight, handleAutoplay, autoplay
     constructor(props) {
         super(props);
         this.state = {
@@ -26,12 +27,11 @@ class Hud extends React.Component {
             thumbnailLeft: null,
             thumbnailText: null,
             thumbnailLink: null,
-            hudClassName: 'hud-on'
+            hudClassName: 'hud-on',
         };
         this.dataArray = [...galleryData];
     }
     handleMouseEnter = (album, page, e) => {
-        let x;
         page === 0 ?
             this.setState({thumbnailStyle: 'thumbnail-active-text'}) :
             this.setState({thumbnailStyle: 'thumbnail-active-image'});
@@ -40,25 +40,44 @@ class Hud extends React.Component {
             this.setState({
                 thumbnailText: this.dataArray[album][page],
                 thumbnailLink: null,
-                thumbnailLeft: x = e.clientX - 20 + 'px'
+                thumbnailLeft: e.clientX - 20 + 'px'
             }) :
             // IMAGE
             this.setState({
                 thumbnailLink: this.dataArray[album][page].link,
                 thumbnailText: null,
-                thumbnailLeft: x = e.clientX - 100 + 'px'
+                thumbnailLeft: e.clientX - 100 + 'px'
             });
     };
     handleMouseLeave() {
         this.setState({thumbnailStyle: 'thumbnail-inactive'});
     };
-    hudOpacity() {
+    toggleHud() {
+        clearTimeout(this.timeout);
+        this.setState({hudClassName: 'hud-on'});
+        this.timeout = setTimeout(() => {
+            this.setState({hudClassName: 'hud-off'})}, 5000
+        )
+    }
+    handleKeyDown(e) {
+        this.toggleHud();
+        if (e.keyCode === 37) {
+            this.props.handleClickLeft();
+        };
+        if (e.keyCode === 39) {
+            this.props.handleClickRight();
+        };
     }
     componentDidMount() {
-        window.addEventListener('mousemove', this.hudOpacity);
+        this.timeout = setTimeout(() => {
+            this.setState({hudClassName: 'hud-off'})}, 5000
+        )
+        window.addEventListener('mousemove', () => this.toggleHud());
+        window.addEventListener('keydown', (e) => this.handleKeyDown(e));
     }
     componentWillUnmount() {
-
+        window.addEventListener('mousemove', () => this.toggleHud());
+        window.addEventListener('keydown', (e) => this.handleKeyDown(e));
     }
     render() {
         const list = this.dataArray.map((i, indexI) => i.map((j, indexJ) => {
@@ -71,20 +90,45 @@ class Hud extends React.Component {
             return (
                 indexI === this.props.album && indexJ === this.props.page ?
                     <li {...attr}
-                        onClick={() => this.props.onClick(indexI, indexJ)}><IoMdRadioButtonOn color='white'/></li> :
+                        onClick={() => this.props.handleClickMenu(indexI, indexJ)}><IoMdRadioButtonOn/></li> :
                 indexJ === 0 ?
-                   <li {...attr}><IoMdPlay color='white'/></li> :
+                   <li {...attr}><IoMdAlbums/></li> :
                    <li
                        {...attr}
-                       onClick={() => this.props.onClick(indexI, indexJ)}><IoMdRadioButtonOff color='white'/></li>
+                       onClick={() => this.props.handleClickMenu(indexI, indexJ)}><IoMdRadioButtonOff/></li>
             )
         }));
         return (
             <div className={this.state.hudClassName}>
                 <div className='nav-buttons'>
-                    <IoIosArrowDropleft size='2em'/>
-                    <IoMdHome size='2em' />
-                    <IoIosArrowDropright size='2em' />
+
+                    <div className='tooltip'>
+                        <IoIosArrowDropleft onClick={() => this.props.handleClickLeft()} size='2em'/>
+                        <span className='tooltip-text'>Previous</span>
+                    </div>
+
+                    <div className='tooltip'>
+                        <Link to='/home'>
+                            <IoIosPower size='2em' />
+                            <span className='tooltip-text'>Home</span>
+                        </Link>
+                    </div>
+
+                    {this.props.autoplay ?
+                        <div className='tooltip'>
+                            <IoIosPause onClick={() => this.props.handleClickAutoplay()} size='2em' />
+                            <span className='tooltip-text'>Pause Autoplay</span>
+                        </div>:
+                        <div className='tooltip'>
+                            <IoIosPlay onClick={() => this.props.handleClickAutoplay()} size='2em' />
+                            <span className='tooltip-text'>Start Autoplay</span>
+                        </div>
+                    }
+
+                    <div className='tooltip'>
+                        <IoIosArrowDropright onClick={() => this.props.handleClickRight()} size='2em' />
+                        <span className='tooltip-text'>Next</span>
+                    </div>
                 </div>
                 <div className='menu'>
                     <ul>
@@ -112,28 +156,78 @@ class Gallery extends React.Component {
     // It recevices props album and page from index
     constructor(props) {
         super(props);
+        // album starts from 0, page 0 is title.
         this.state = {
             album: 0,
-            page: 1
+            page: 1,
+            autoplay: false
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.dataArray = [...galleryData];
+        this.handleClickMenu = this.handleClickMenu.bind(this);
+        this.handleClickLeft = this.handleClickLeft.bind(this);
+        this.handleClickRight = this.handleClickRight.bind(this);
+        this.handleClickAutoplay = this.handleClickAutoplay.bind(this);
     }
-    handleClick(album, page){
+    handleClickMenu(album, page){
         this.setState({
             album: album,
             page: page
         })
     }
+    handleClickLeft() {
+        if (this.state.album === 0 && this.state.page === 1) {
+            this.setState({
+                album: this.dataArray.length - 1,
+                page: this.dataArray[this.dataArray.length - 1].length - 1
+            })
+        } else if (this.state.page === 1) {
+            this.setState({
+                album: this.state.album - 1,
+                page: this.dataArray[this.state.album - 1].length - 1
+            })
+        } else {
+            this.setState({
+                page: this.state.page - 1
+            })
+        }
+    }
+    handleClickRight() {
+        if (this.state.album === this.dataArray.length - 1 && this.state.page === this.dataArray[this.dataArray.length - 1].length - 1) {
+            this.setState({
+                album: 0,
+                page: 1
+            })
+        } else if (this.state.page === this.dataArray[this.state.album].length - 1) {
+            this.setState({
+                album: this.state.album + 1,
+                page: 1
+            })
+        } else {
+            this.setState({
+                page: this.state.page + 1
+            })
+        }
+    }
+    handleClickAutoplay() {
+        this.state.autoplay ? this.setState({autoplay: false}) : this.setState({autoplay: true});
+        // setState is bulk!!
+        if(!this.state.autoplay) {
+            this.handleClickRight();
+            this.interval = setInterval(() => this.handleClickRight(), 5000)
+        } else {
+            clearInterval(this.interval);
+        }
+    }
     componentDidMount() {
         this.setState(
-            this.state = {
+            {
                 album: this.props.album
             }
         )
     }
 
     render() {
-        const dataArray = [...galleryData];
+        const dataArray = [...this.dataArray];
         const title = dataArray[this.state.album][0];
         const description = dataArray[this.state.album][this.state.page].description;
         const link = dataArray[this.state.album][this.state.page].link;
@@ -145,7 +239,11 @@ class Gallery extends React.Component {
                     page={this.state.page}
                     title={title}
                     description={description}
-                    onClick={this.handleClick} />
+                    handleClickMenu={this.handleClickMenu}
+                    handleClickLeft={this.handleClickLeft}
+                    handleClickRight={this.handleClickRight}
+                    handleClickAutoplay={this.handleClickAutoplay}
+                    autoplay={this.state.autoplay}/>
             </div>
             )
     }

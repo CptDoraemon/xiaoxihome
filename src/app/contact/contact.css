@@ -1,10 +1,8 @@
-
 .contact-wrapper {
     position: relative;
     background-image: linear-gradient(to bottom right, rgb(47,86,233),rgb(51,171,249),rgb(92,219,255));
     width: 100vw;
     height: 100vh;
-    z-index: 1;
 }
 .contact-close-icon{
     position: absolute;
@@ -12,6 +10,7 @@
     right: 5%;
     color: white;
     transition: 0.3s;
+    z-index: 99;
 }
 .contact-close-icon:hover {
     color: #F05408;
@@ -19,13 +18,14 @@
     transition: 0.3s;
 }
 .contact-form {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    z-index: 99;
+    z-index: 98;
 }
 .contact-form-icon {
     color: white;
@@ -78,5 +78,5 @@
 
 #display {
     position: fixed;
-    z-index: -99;
+    z-index: 1;
 }

@@ -38,26 +38,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gallery.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gallery.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/gallery/gallery.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="81" column="21" lean-forward="false" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+            <state relative-caret-position="430">
+              <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gallery.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="66" column="56" lean-forward="false" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gallery.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/gallery/gallery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
+            <state relative-caret-position="180">
+              <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1544748707259" expanded="true" signature="8598:9141" ph="..." />
-                <marker date="1544748707259" expanded="true" signature="8634:9135" ph="..." />
-                <marker date="1544748707259" expanded="true" signature="8656:9122" ph="..." />
+                <marker date="1544753510038" expanded="true" signature="8745:9288" ph="..." />
+                <marker date="1544753510038" expanded="true" signature="8781:9282" ph="..." />
+                <marker date="1544753510038" expanded="true" signature="8803:9269" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,8 +110,8 @@
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/app/gallery/galleryData.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/app/gallery/gallery.css" />
         <option value="$PROJECT_DIR$/src/app/gallery/gallery.js" />
+        <option value="$PROJECT_DIR$/src/app/gallery/gallery.css" />
       </list>
     </option>
   </component>
@@ -230,12 +240,12 @@
       <workItem from="1544328340570" duration="56600000" />
       <workItem from="1544470052177" duration="49898000" />
       <workItem from="1544653229582" duration="23918000" />
-      <workItem from="1544732944341" duration="13449000" />
+      <workItem from="1544732944341" duration="15004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145526000" />
+    <option name="totallyTimeSpent" value="147081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -616,14 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="66" column="4" lean-forward="false" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -687,24 +689,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/gallery/gallery.css">
+    <entry file="file://$PROJECT_DIR$/src/app/gallery/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="81" column="21" lean-forward="false" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+        <state relative-caret-position="180">
+          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <marker date="1544753510038" expanded="true" signature="8745:9288" ph="..." />
+            <marker date="1544753510038" expanded="true" signature="8781:9282" ph="..." />
+            <marker date="1544753510038" expanded="true" signature="8803:9269" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="66" column="56" lean-forward="false" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/gallery/gallery.js">
+    <entry file="file://$PROJECT_DIR$/src/app/gallery/gallery.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <marker date="1544748707259" expanded="true" signature="8598:9141" ph="..." />
-            <marker date="1544748707259" expanded="true" signature="8634:9135" ph="..." />
-            <marker date="1544748707259" expanded="true" signature="8656:9122" ph="..." />
-          </folding>
+        <state relative-caret-position="430">
+          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

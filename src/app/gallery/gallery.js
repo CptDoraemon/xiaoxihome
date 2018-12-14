@@ -10,6 +10,10 @@ function Show(props) {
     return (
         <div className='showcase'>
             <div
+                className='show-blur-bg'
+                style={{backgroundImage: 'url(' + props.link + ')'}}>
+            </div>
+            <div
                 className='show'
                 style={{backgroundImage: 'url(' + props.link + ')'}}>
             </div>

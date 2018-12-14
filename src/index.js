@@ -9,6 +9,7 @@ import { WebAppProject } from './app/webAppProjects';
 import { Frontpage } from './app/frontpage';
 import { Missing404 } from './component/missing404';
 import { Gallery } from './app/gallery/gallery';
+import { Contact } from './app/contact/contact';
 
 const academicProjectArray = [
     'Machine Learning',
@@ -107,6 +108,9 @@ class App extends React.Component {
                     <Route path={galleryLinkArray[3]} render={(props) => <Gallery {...props} album={3} page={1} /> } />
                     <Route path={galleryLinkArray[4]} render={(props) => <Gallery {...props} album={4} page={1} /> } />
                     <Route path={galleryLinkArray[5]} render={(props) => <Gallery {...props} album={5} page={1} /> } />
+
+                    <Route path="/contact" render={(props) => <Contact {...props}/> } />
+
                     <Route component={ Missing404 } />
                 </Switch>
                 </ScrollToTop>

@@ -39,6 +39,7 @@ const galleryArray = [
     'Astro'
 ];
 
+// Links are in the format of /xxxxxx-xxxxxx
 const academicProjectLinkArray = [];
 const webAppProjectLinkArray = [];
 const galleryLinkArray = [];
@@ -65,6 +66,25 @@ const listAndLink = {
 
 
 class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.academicProjectPaths = academicProjectLinkArray.map((i, index) => {
+            return (
+                <Route path={i} render={(props) => <AcademicProject {...props} name={academicProjectArray[index]} listAndLink={listAndLink}/>} />
+            )
+        });
+        this.webAppProjectPaths = webAppProjectLinkArray.map((i, index) => {
+            return (
+                <Route path={i} render={(props) => <WebAppProject {...props} name={webAppProjectArray[index]} listAndLink={listAndLink} />} />
+            )
+        });
+        this.galleryPaths = galleryLinkArray.map((i, index) => {
+            return (
+                <Route path={i} render={(props) => <Gallery {...props} album={index} page={1} /> } />
+            )
+        });
+
+    }
     componentDidMount(){
         const title = [
             '⊂(˃̶͈̀ε ˂̶͈́ ⊂ )))Σ≡=─',
@@ -82,8 +102,8 @@ class App extends React.Component {
         const pickOne = Math.floor(Math.random() * title.length );
         document.title = 'Xiaoxi\'s Home' + title[pickOne];
     }
-    render() {
 
+    render() {
         return (
             <Router>
                 <ScrollToTop>
@@ -91,30 +111,16 @@ class App extends React.Component {
                     <Route path="/" exact render={(props) => <Frontpage {...props} listAndLink={listAndLink} />} />
                     <Route path="/home" exact render={(props) => <Frontpage {...props} listAndLink={listAndLink} />} />
                     <Route path="/work" exact key='work' render={(props) => <Frontpage {...props} toWorkRef={true} listAndLink={listAndLink} />} />
-                    <Route path="/econometric-theory" render={(props) => <AcademicProject {...props} name='econometric theory' listAndLink={listAndLink}/>} />
-                    <Route path="/empirical-international-trade" render={(props) => <AcademicProject {...props} name='empirical international trade' listAndLink={listAndLink}/>} />
-                    <Route path="/north-american-economic-history" render={(props) => <AcademicProject {...props} name='north american economic history' listAndLink={listAndLink}/>} />
-                    <Route path="/stochastic-processes" render={(props) => <AcademicProject {...props} name='stochastic processes' listAndLink={listAndLink}/>} />
-                    <Route path="/applied-macroeconomics" render={(props) => <AcademicProject {...props} name='applied macroeconomics' listAndLink={listAndLink}/>} />
-                    <Route path="/machine-learning" render={(props) => <AcademicProject {...props} name='machine learning' listAndLink={listAndLink}/>} />
-
-                    <Route path={webAppProjectLinkArray[0]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[0]} listAndLink={listAndLink} />} />
-                    <Route path={webAppProjectLinkArray[1]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[1]} listAndLink={listAndLink} />} />
-                    <Route path={webAppProjectLinkArray[2]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[2]} listAndLink={listAndLink} />} />
-                    <Route path={webAppProjectLinkArray[3]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[3]} listAndLink={listAndLink} />} />
-                    <Route path={webAppProjectLinkArray[4]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[4]} listAndLink={listAndLink} />} />
-                    <Route path={webAppProjectLinkArray[5]} render={(props) => <WebAppProject {...props} name={webAppProjectArray[5]} listAndLink={listAndLink} />} />
-
-                    <Route path={galleryLinkArray[0]} render={(props) => <Gallery {...props} album={0} page={1} /> } />
-                    <Route path={galleryLinkArray[1]} render={(props) => <Gallery {...props} album={1} page={1} /> } />
-                    <Route path={galleryLinkArray[2]} render={(props) => <Gallery {...props} album={2} page={1} /> } />
-                    <Route path={galleryLinkArray[3]} render={(props) => <Gallery {...props} album={3} page={1} /> } />
-                    <Route path={galleryLinkArray[4]} render={(props) => <Gallery {...props} album={4} page={1} /> } />
-                    <Route path={galleryLinkArray[5]} render={(props) => <Gallery {...props} album={5} page={1} /> } />
-
                     <Route path="/contact" render={(props) => <Contact {...props}/> } />
 
+                    { this.academicProjectPaths }
+
+                    { this.webAppProjectPaths }
+
+                    { this.galleryPaths }
+
                     <Route component={ Missing404 } />
+
                 </Switch>
                 </ScrollToTop>
             </Router>

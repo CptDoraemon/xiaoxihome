@@ -4,7 +4,8 @@ import { HeaderCover} from "../component/header";
 import { Footer} from "../component/footer";
 import { MouseIcon } from "../component/mouseIcon"
 
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import './frontpage.css';
 
 function Cover(props) {
     // It receives a prop onClickMouseIcon={this.scrollToWorkRef}
@@ -121,11 +122,11 @@ class Frontpage extends React.Component {
     render() {
         //It receives props: listAndLink
         return (
-            <div>
+            <div className='frontpage-main'>
                 <HeaderCover listAndLink={this.props.listAndLink} />
                 <Cover onClickMouseIcon={this.scrollToWorkRef}/>
-                <div className={'color1'}>
-                    <div ref={this.workRef}></div>
+                <div className={'academic-and-web'}>
+                    <div ref={this.workRef}/>
                     <ProjectList
                         type='academic'
                         listAndArray={this.props.listAndLink} />
@@ -133,7 +134,7 @@ class Frontpage extends React.Component {
                         type='webApp'
                         listAndArray={this.props.listAndLink} />
                 </div>
-                <div className={'color-dark'}>
+                <div className={'gallery'}>
                     <ProjectList
                         type='gallery'
                         listAndArray={this.props.listAndLink}

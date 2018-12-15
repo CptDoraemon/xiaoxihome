@@ -8,7 +8,9 @@ class Footer extends React.Component {
         super(props)
         this.state={
             dropListClassName: 'drop-list-inactive'
-        }
+        };
+        this.dropListToggle = this.dropListToggle.bind(this);
+        this.dropListInactive = this.dropListInactive.bind(this);
     }
     dropListToggle() {
         this.setState({
@@ -27,12 +29,12 @@ class Footer extends React.Component {
                 <div className='nav-bar'>
                     <ul>
                         <Link to='/home'><li>home</li></Link>
-                        <li onClick={() => this.dropListToggle()}>work</li>
+                        <li onClick={this.dropListToggle}>work</li>
                         <Link to='/about'><li>about</li></Link>
                         <Link to='/contact'><li>contact</li></Link>
                     </ul>
                 </div>
-                <div className='footer-flexbox' onMouseLeave={() => this.dropListInactive()} >
+                <div className='footer-flexbox' onMouseLeave={this.dropListInactive} >
                     <div className={ this.state.dropListClassName } >
                         <h5>Academic Projects</h5>
                         { this.props.listAndLink.academicProjectArray.map((i, index) => {

@@ -1,6 +1,6 @@
 const academicProjectsData = [
     {
-        title: 'econometric theory',
+        title: 'Econometric Theory',
         projects: [
             {
                 link: 'https://s3.us-east-2.amazonaws.com/xiaoxihome/projects/metric_2.pdf',
@@ -29,7 +29,7 @@ const academicProjectsData = [
         ]
     },
     {
-        title: 'empirical international trade',
+        title: 'Empirical International Trade',
         projects: [
             {
                 link: 'https://s3.us-east-2.amazonaws.com/xiaoxihome/projects/trade_1.pdf',
@@ -54,7 +54,7 @@ const academicProjectsData = [
         ]
     },
     {
-        title: 'north american economic history',
+        title: 'North American Economic History',
         projects: [
             {
                 link: 'https://s3.us-east-2.amazonaws.com/xiaoxihome/projects/history.pdf',
@@ -69,7 +69,7 @@ const academicProjectsData = [
         ]
     },
     {
-        title: 'stochastic processes',
+        title: 'Stochastic Processes',
         projects: [
             {
                 link: 'https://s3.us-east-2.amazonaws.com/xiaoxihome/projects/6602_2.pdf',
@@ -90,7 +90,7 @@ const academicProjectsData = [
         ]
     },
     {
-        title: 'applied macroeconomics',
+        title: 'Applied Macroeconomics',
         projects: [
             {
                 link: 'https://s3.us-east-2.amazonaws.com/xiaoxihome/projects/macro.pdf',
@@ -99,7 +99,7 @@ const academicProjectsData = [
         ]
     },
     {
-        title: 'machine learning',
+        title: 'Machine Learning',
         projects: [
             {
                 link: '',

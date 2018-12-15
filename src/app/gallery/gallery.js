@@ -34,6 +34,8 @@ class Hud extends React.Component {
             hudClassName: 'hud-on',
         };
         this.dataArray = [...galleryData];
+        this.xDown = null;
+        this.yDown = null;
     }
     handleMouseEnter = (album, page, e) => {
         page === 0 ?
@@ -72,16 +74,62 @@ class Hud extends React.Component {
             this.props.handleClickRight();
         };
     }
+    //mobile
+    handleTouchStart(e) {
+        this.xDown = e.touches[0].clientX;
+        this.yDown = e.touches[0].clientY;
+        this.toggleHud();
+    };
+    handleTouchMove(e) {
+        if ( ! this.xDown || ! this.yDown ) {
+            return;
+        }
+        let xUp = e.touches[0].clientX;
+        let yUp = e.touches[0].clientY;
+        let xDiff = this.xDown - xUp;
+        let yDiff = this.yDown - yUp;
+
+        if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+            e.preventDefault();
+            if ( xDiff > 0 ) {
+                /* left swipe */
+                this.props.handleClickLeft();
+            } else {
+                /* right swipe */
+                this.props.handleClickRight();
+            }
+        } else {
+            if ( yDiff > 0 ) {
+                /* up swipe */
+                return;
+            } else {
+                /* down swipe */
+                return;
+            }
+        }
+        /* reset values */
+        this.xDown = null;
+        this.yDown = null;
+    };
+
+
+
     componentDidMount() {
         this.timeout = setTimeout(() => {
             this.setState({hudClassName: 'hud-off'})}, 5000
-        )
+        );
         window.addEventListener('mousemove', () => this.toggleHud());
         window.addEventListener('keydown', (e) => this.handleKeyDown(e));
+        // mobile
+        window.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+        window.addEventListener('touchmove', (e) => this.handleTouchMove(e));
     }
     componentWillUnmount() {
         window.addEventListener('mousemove', () => this.toggleHud());
         window.addEventListener('keydown', (e) => this.handleKeyDown(e));
+        // mobile
+        window.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+        window.addEventListener('touchmove', (e) => this.handleTouchMove(e));
     }
     render() {
         const list = this.dataArray.map((i, indexI) => i.map((j, indexJ) => {

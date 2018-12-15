@@ -1,14 +1,14 @@
 import React from 'react';
 import './header.css';
 import { Link } from "react-router-dom";
-import { IoIosList } from "react-icons/io";
+import { IoIosList, IoIosClose } from "react-icons/io";
 
 class HeaderCover extends React.Component {
     constructor(props){
         super(props)
         this.state={
             dropDownClassName: 'work-drop-down-cover-inactive',
-            headerCoverClassName: 'header-cover'
+            headerCoverClassName: 'header-cover',
         }
         this.handleMobileMenuClick = this.handleMobileMenuClick.bind(this);
         this.workDropDownListToggle = this.workDropDownListToggle.bind(this);
@@ -34,7 +34,7 @@ class HeaderCover extends React.Component {
         return (
             <div className={this.state.headerCoverClassName}>
                 <div className='mobile-menu-icon' onClick={this.handleMobileMenuClick}>
-                    <IoIosList size='2em'/>
+                    { this.state.headerCoverClassName === 'header-cover' ? <IoIosList size='2em'/> : <IoIosClose size='2em'/> }
                 </div>
                 <ul>
                     <Link to='/home'>

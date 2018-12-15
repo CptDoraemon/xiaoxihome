@@ -167,6 +167,7 @@
         position: absolute;
         top: 35px; /* ul has padding for better accessibility */
         left: 35px;
+        padding: 0;
     }
     .mobile-menu-icon {
         display: block;
@@ -174,37 +175,28 @@
     }
     .header-cover ul {
         display: none;
+        height: 0;
     }
     .header-cover-mobile {
         list-style: none;
         text-transform: uppercase;
         position: absolute;
-        top: 0px; /* ul has padding for better accessibility */
-        left: 0px;
         width: 100vw;
         background-color: rgba(0, 0, 0, 0.9);
         padding: 35px 35px;
-        transition: 0.3s;
+        transition: padding-top 0.3s; /* the menu pulled down animation */
         z-index: 99;
     }
     .header-cover-mobile ul{
         margin: 0;
         padding: 0;
         color: rgba(255, 255, 255, 1);
-        transition: 0.3s;
     }
     .header-cover-mobile li{
         display: block;
         margin: 0;
         font-size: 14px;
         line-height: 28px;
-        transition: 0.3s;
-    }
-    .header-cover-mobile li:hover{
-        font-weight: bold;
-        letter-spacing: initial;
-        transition: 0.3s;
-        cursor: pointer;
     }
 
     /* DORP DOWN LIST */

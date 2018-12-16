@@ -113,7 +113,7 @@ class Contact extends React.Component {
         }
     }
     componentDidMount() {
-        if (window.innerWidth > 1000) this.letItSnow();
+        if (window.innerWidth > 800) this.letItSnow();
     }
 
     render() {

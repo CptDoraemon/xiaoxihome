@@ -181,7 +181,7 @@
         list-style: none;
         text-transform: uppercase;
         position: absolute;
-        width: 100vw;
+        width: calc(100vw - 70px); /* 35px padding each side */
         background-color: rgba(0, 0, 0, 0.9);
         padding: 35px 35px;
         transition: padding-top 0.3s; /* the menu pulled down animation */
